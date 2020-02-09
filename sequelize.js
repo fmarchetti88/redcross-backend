@@ -5,6 +5,9 @@ const CountryModel = require('./models/country');
 const CityModel = require('./models/city');
 const CommitteeModel = require('./models/committee');
 const VehicleModel = require('./models/vehicle');
+const CommitteeUserModel = require('./models/committee_user');
+const TripModel = require('./models/trip');
+const TripUserModel = require('./models/trip_user');
 
 const sequelize = new Sequelize('redcross', 'root', 'password', {
   host: 'localhost',
@@ -23,10 +26,9 @@ const Country = CountryModel(sequelize, Sequelize);
 const City = CityModel(sequelize, Sequelize);
 const Committee = CommitteeModel(sequelize, Sequelize);
 const Vehicle = VehicleModel(sequelize, Sequelize);
-
-// BlogTag will be our way of tracking relationship between Blog and Tag models
-// each Blog can have multiple tags and each Tag can have multiple blogs
-//const BlogTag = sequelize.define('blog_tag', {});
+const CommitteeUser = CommitteeUserModel(sequelize, Sequelize);
+const Trip = TripModel(sequelize, Sequelize);
+const TripUser = TripUserModel(sequelize, Sequelize);
 
 Country.belongsTo(Region);
 Region.hasMany(Country);
@@ -39,9 +41,118 @@ Country.hasMany(Committee);
 Committee.belongsTo(City);
 City.hasMany(Committee);
 Vehicle.belongsTo(Committee);
+CommitteeUser.belongsTo(Committee);
+CommitteeUser.belongsTo(User);
+Committee.hasMany(CommitteeUser);
+User.hasMany(CommitteeUser);
+Trip.belongsTo(Vehicle);
+Trip.belongsTo(Committee);
+Vehicle.hasMany(Trip);
+Committee.hasMany(Trip);
+TripUser.belongsTo(Trip);
+TripUser.belongsTo(User);
+Trip.hasMany(TripUser);
+User.hasMany(TripUser);
 
 sequelize.sync({ force: true }).then(() => {
-  console.log(`Database & tables created!`);
+  Region.create({
+    description: 'Marche'
+  });
+  Country.create({
+    description: 'Pesaro/Urbino',
+    acronym: 'PU',
+    regionId: 1
+  });
+  City.create({
+    description: 'Cagli',
+    countryId: 1
+  });
+  Committee.create({
+    description: 'Comitato di Cagli',
+    cityId: 1,
+    countryId: 1,
+    regionId: 1
+  });
+  User.create({
+    username: 'f.marchetti',
+    password: 'default',
+    name: 'Filippo',
+    surname: 'Marchetti',
+    birth_date: new Date(1988, 04, 15),
+    gender: 0,
+    role: 0,
+    type: 0
+  });
+  User.create({
+    username: 'f.torri',
+    password: 'default',
+    name: 'Filippo',
+    surname: 'Torri',
+    birth_date: new Date(1960, 02, 11),
+    gender: 0,
+    role: 0,
+    type: 0
+  });
+  CommitteeUser.create({
+    userId: 1,
+    committeeId: 1
+  });
+  CommitteeUser.create({
+    userId: 2,
+    committeeId: 1
+  });
+  Vehicle.create({
+    type: 0,
+    plate: 'EA072RJ',
+    sign: '51A',
+    description: 'Ambulanza 1',
+    committeeId: 1
+  });
+  Trip.create({
+    dateHour: new Date(2020, 2, 10, 10, 00),
+    flgDestination: 0,
+    flgAr: 0,
+    siteDeparture: 'via della libertà, 10 - Cagli',
+    siteArrival: 'via martiri di via fani, 2 - Acqualagna',
+    serviceType: 'Dialisi',
+    patientData: 'Marco Rossi',
+    type: 0,
+    extraUsers: 1,
+    flgNurse: 0,
+    notes: 'n/a',
+    committeeId: 1,
+    vehicleId: 1
+  });
+  TripUser.create({
+    userId: 1,
+    tripId: 1,
+    role: 0
+  });
+  TripUser.create({
+    userId: 2,
+    tripId: 1,
+    role: 1
+  });
+  Trip.create({
+    dateHour: new Date(2020, 3, 10, 10, 00),
+    flgDestination: 0,
+    flgAr: 0,
+    siteDeparture: 'via della libertà, 11 - Cagli',
+    siteArrival: 'via martiri di via fani, 2 - Acqualagna',
+    serviceType: 'Dialisi',
+    patientData: 'Roberto Bianchi',
+    type: 0,
+    extraUsers: 0,
+    flgNurse: 0,
+    notes: 'n/a',
+    committeeId: 1,
+    vehicleId: 1
+  });
+  TripUser.create({
+    userId: 2,
+    tripId: 2,
+    role: 1
+  });
 });
 
 module.exports = {
@@ -50,5 +161,8 @@ module.exports = {
   Country,
   City,
   Committee,
-  Vehicle
+  Vehicle,
+  CommitteeUser,
+  Trip,
+  TripUser
 };

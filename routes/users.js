@@ -37,6 +37,8 @@ router.put('/users/:id', (req, res) =>
       password: req.body.password,
       name: req.body.name,
       surname: req.body.surname,
+      flgPasswordChanged: req.body.flgPasswordChanged,
+      email: req.body.email,
       birth_date: req.body.birth_date,
       gender: req.body.gender,
       role: req.body.role,

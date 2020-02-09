@@ -8,7 +8,12 @@ module.exports = (sequelize, type) => {
     description: {
       type: type.STRING,
       allowNull: false,
-      unique: true
+      unique: 'uniqueCountry'
+    },
+    acronym: {
+      type: type.STRING,
+      allowNull: false,
+      unique: 'uniqueCountry'
     },
     regionId: {
       type: type.INTEGER,

@@ -38,6 +38,7 @@ router.put('/countries/:id', (req, res) =>
   Country.update(
     {
       description: req.body.description,
+      acronym: req.body.acronym,
       regionId: req.body.regionId
     },
     {

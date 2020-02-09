@@ -14,6 +14,11 @@ module.exports = (sequelize, type) => {
       type: type.STRING,
       allowNull: false
     },
+    flgPasswordChanged: {
+      type: type.DECIMAL(1, 0),
+      allowNull: false,
+      defaultValue: 0
+    },
     name: {
       type: type.STRING,
       allowNull: false,
@@ -25,8 +30,11 @@ module.exports = (sequelize, type) => {
       unique: 'uniqueName'
     },
     birth_date: {
-      type: type.DATE,
+      type: type.DATEONLY,
       allowNull: true
+    },
+    email: {
+      type: type.STRING
     },
     gender: {
       type: type.DECIMAL(1, 0),
