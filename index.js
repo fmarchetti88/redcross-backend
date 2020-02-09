@@ -13,6 +13,11 @@ async function myAuthorizer(username, password, cb) {
 }
 
 app.use(require('./routes'));
+app.get('/api/authenticate', (req, res) =>
+  res.status(200).json({
+    authenticated: true
+  })
+);
 
 const port = 3000;
 app.listen(port, () => {
