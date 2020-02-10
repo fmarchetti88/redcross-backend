@@ -1,4 +1,4 @@
-const { User } = require('./../sequelize');
+const { CommitteeUser, User } = require('./../sequelize');
 var router = require('express').Router();
 
 // get all users
@@ -10,6 +10,23 @@ router.get('/users', (req, res) => {
 // get user
 router.get('/users/:id', (req, res) => {
   User.findByPk(req.params.id)
+    .then(result => {
+      if (!result) {
+        return res.status(404).json({
+          error: 'user not found'
+        });
+      }
+      return res.json(result);
+    })
+    .catch(err => res.status(500).json(err));
+});
+
+// get user
+router.get('/users/findbyusername/:username', (req, res) => {
+  User.findOne({
+    include: [{ model: CommitteeUser }],
+    where: { username: req.params.username }
+  })
     .then(result => {
       if (!result) {
         return res.status(404).json({

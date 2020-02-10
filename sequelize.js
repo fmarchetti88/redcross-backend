@@ -67,9 +67,19 @@ sequelize.sync({ force: true }).then(() => {
     description: 'Cagli',
     countryId: 1
   });
+  City.create({
+    description: `SantAngelo in Vado`,
+    countryId: 1
+  });
   Committee.create({
     description: 'Comitato di Cagli',
     cityId: 1,
+    countryId: 1,
+    regionId: 1
+  });
+  Committee.create({
+    description: `Comitato di SantAngelo in Vado`,
+    cityId: 2,
     countryId: 1,
     regionId: 1
   });
