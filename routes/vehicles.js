@@ -25,6 +25,23 @@ router.get('/vehicles/:id', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// get vehicle by committee
+router.get('/vehicles/filterByCommittee/:committeeId', (req, res) => {
+  Vehicle.findAll({
+    ...includeModels,
+    where: { committeeId: req.params.committeeId }
+  })
+    .then(result => {
+      if (!result) {
+        return res.status(404).json({
+          error: 'vehicles not found'
+        });
+      }
+      return res.json(result);
+    })
+    .catch(err => res.status(500).json(err));
+});
+
 // create a vehicle
 router.post('/vehicles', (req, res) => {
   console.log(req.body);

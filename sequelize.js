@@ -122,6 +122,20 @@ sequelize.sync({ force: true }).then(() => {
     description: 'Ambulanza 1',
     committeeId: 1
   });
+  Vehicle.create({
+    type: 1,
+    plate: 'EA072AA',
+    sign: '50A',
+    description: 'Ambulanza 2',
+    committeeId: 1
+  });
+  Vehicle.create({
+    type: 1,
+    plate: 'DC002GL',
+    sign: '52A',
+    description: 'Ambulanza 2',
+    committeeId: 2
+  });
   Trip.create({
     dateHour: new Date(2020, 2, 10, 10, 00),
     flgDestination: 0,
