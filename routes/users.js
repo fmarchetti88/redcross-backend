@@ -1,15 +1,19 @@
-const { CommitteeUser, User } = require('./../sequelize');
+const { Committee, CommitteeUser, User } = require('./../sequelize');
 var router = require('express').Router();
+
+const includeModels = {
+  include: [{ model: CommitteeUser, include: [Committee] }]
+};
 
 // get all users
 router.get('/users', (req, res) => {
   console.log(req);
-  User.findAll().then(users => res.json(users));
+  User.findAll(includeModels).then(users => res.json(users));
 });
 
 // get user
 router.get('/users/:id', (req, res) => {
-  User.findByPk(req.params.id)
+  User.findByPk(req.params.id, includeModels)
     .then(result => {
       if (!result) {
         return res.status(404).json({
@@ -21,10 +25,10 @@ router.get('/users/:id', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-// get user
+// get user by username
 router.get('/users/findbyusername/:username', (req, res) => {
   User.findOne({
-    include: [{ model: CommitteeUser }],
+    ...includeModels,
     where: { username: req.params.username }
   })
     .then(result => {

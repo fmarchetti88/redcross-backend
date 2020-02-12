@@ -111,6 +111,10 @@ sequelize.sync({ force: true }).then(() => {
     userId: 2,
     committeeId: 1
   });
+  CommitteeUser.create({
+    userId: 2,
+    committeeId: 2
+  });
   Vehicle.create({
     type: 0,
     plate: 'EA072RJ',
