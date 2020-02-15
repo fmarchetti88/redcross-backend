@@ -83,6 +83,7 @@ sequelize.sync({ force: true }).then(() => {
     name: 'Filippo',
     surname: 'Marchetti',
     birth_date: new Date(1988, 04, 15),
+    email: 'f.marchetti@email.it',
     gender: 0,
     role: 0,
     occupation: 2
