@@ -42,6 +42,28 @@ router.get('/users/findbyusername/:username', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// get users by committee
+router.get('/users/findByCommittee/:committeeId', (req, res) => {
+  User.findAll({
+    include: [
+      {
+        model: CommitteeUser,
+        where: { committeeId: req.params.committeeId },
+        include: [Committee]
+      }
+    ]
+  })
+    .then(result => {
+      if (!result) {
+        return res.status(404).json({
+          error: 'users not found'
+        });
+      }
+      return res.json(result);
+    })
+    .catch(err => res.status(500).json(err));
+});
+
 // create a user
 router.post('/users', (req, res) => {
   console.log(req.body);

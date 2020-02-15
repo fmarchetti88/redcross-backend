@@ -21,6 +21,11 @@ module.exports = (sequelize, type) => {
         allowNull: false,
         defaultValue: 0
       },
+      disabled: {
+        type: type.DECIMAL(1, 0),
+        allowNull: false,
+        defaultValue: 0
+      },
       name: {
         type: type.STRING,
         allowNull: false,

@@ -77,12 +77,6 @@ sequelize.sync({ force: true }).then(() => {
     countryId: 1,
     regionId: 1
   });
-  Committee.create({
-    description: `Comitato di SantAngelo in Vado`,
-    cityId: 2,
-    countryId: 1,
-    regionId: 1
-  });
   User.create({
     username: 'f.marchetti',
     password: 'default',
@@ -91,7 +85,7 @@ sequelize.sync({ force: true }).then(() => {
     birth_date: new Date(1988, 04, 15),
     gender: 0,
     role: 0,
-    type: 0
+    occupation: 2
   });
   User.create({
     username: 'f.torri',
@@ -100,8 +94,25 @@ sequelize.sync({ force: true }).then(() => {
     surname: 'Torri',
     birth_date: new Date(1960, 02, 11),
     gender: 0,
-    role: 0,
-    type: 0
+    role: 1,
+    occupation: 0
+  });
+  User.create({
+    username: 'e.rossi',
+    password: 'default',
+    name: 'Elena',
+    surname: 'Rossi',
+    birth_date: new Date(1960, 02, 11),
+    gender: 1,
+    role: 2,
+    occupation: 1,
+    disabled: 1
+  });
+  Committee.create({
+    description: `Comitato di SantAngelo in Vado`,
+    cityId: 2,
+    countryId: 1,
+    regionId: 1
   });
   CommitteeUser.create({
     userId: 1,
@@ -109,6 +120,10 @@ sequelize.sync({ force: true }).then(() => {
   });
   CommitteeUser.create({
     userId: 2,
+    committeeId: 1
+  });
+  CommitteeUser.create({
+    userId: 3,
     committeeId: 1
   });
   CommitteeUser.create({

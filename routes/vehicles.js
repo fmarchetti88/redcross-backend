@@ -26,7 +26,7 @@ router.get('/vehicles/:id', (req, res) => {
 });
 
 // get vehicle by committee
-router.get('/vehicles/filterByCommittee/:committeeId', (req, res) => {
+router.get('/vehicles/findByCommittee/:committeeId', (req, res) => {
   Vehicle.findAll({
     ...includeModels,
     where: { committeeId: req.params.committeeId }
