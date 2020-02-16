@@ -41,7 +41,10 @@ router.put('/committees_users/:id', (req, res) =>
     {
       description: req.body.description,
       userId: req.body.userId,
-      commiteeId: req.body.commiteeId
+      commiteeId: req.body.commiteeId,
+      role: req.body.role,
+      occupation: req.body.occupation,
+      disabled: req.body.disabled
     },
     {
       where: {

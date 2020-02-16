@@ -84,8 +84,7 @@ router.put('/users/:id', (req, res) =>
       email: req.body.email,
       birth_date: req.body.birth_date,
       gender: req.body.gender,
-      role: req.body.role,
-      occupation: req.body.occupation
+      superuser: req.body.superuser
     },
     {
       where: {

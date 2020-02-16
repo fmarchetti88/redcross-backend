@@ -85,8 +85,7 @@ sequelize.sync({ force: true }).then(() => {
     birth_date: new Date(1988, 04, 15),
     email: 'f.marchetti@email.it',
     gender: 0,
-    role: 0,
-    occupation: 2
+    superuser: 1
   });
   User.create({
     username: 'f.torri',
@@ -94,9 +93,7 @@ sequelize.sync({ force: true }).then(() => {
     name: 'Filippo',
     surname: 'Torri',
     birth_date: new Date(1960, 02, 11),
-    gender: 0,
-    role: 1,
-    occupation: 0
+    gender: 0
   });
   User.create({
     username: 'e.rossi',
@@ -104,10 +101,7 @@ sequelize.sync({ force: true }).then(() => {
     name: 'Elena',
     surname: 'Rossi',
     birth_date: new Date(1960, 02, 11),
-    gender: 1,
-    role: 2,
-    occupation: 1,
-    disabled: 1
+    gender: 1
   });
   Committee.create({
     description: `Comitato di SantAngelo in Vado`,
@@ -121,15 +115,24 @@ sequelize.sync({ force: true }).then(() => {
   });
   CommitteeUser.create({
     userId: 2,
-    committeeId: 1
+    committeeId: 1,
+    role: 1,
+    occupation: 0,
+    disabled: 0
   });
   CommitteeUser.create({
     userId: 3,
-    committeeId: 1
+    committeeId: 1,
+    role: 2,
+    occupation: 1,
+    disabled: 1
   });
   CommitteeUser.create({
     userId: 2,
-    committeeId: 2
+    committeeId: 2,
+    role: 1,
+    occupation: 1,
+    disabled: 0
   });
   Vehicle.create({
     type: 0,
