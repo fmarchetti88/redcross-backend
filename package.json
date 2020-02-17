@@ -4,6 +4,7 @@
   "description": "repository for sequelize article",
   "main": "index.js",
   "scripts": {
+    "start": "node .\\index.js",
     "test": "echo \"No test\""
   },
   "repository": {
