@@ -1,0 +1,1906 @@
+{
+	"info": {
+		"_postman_id": "b297b022-7a3a-427f-a0bf-e62a77685ee9",
+		"name": "redcross-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NoAuth",
+			"item": [
+				{
+					"name": "committees",
+					"item": [
+						{
+							"name": "getCommittees",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postCommittees",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"committeeId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"aaa\",\n    \"regionId\": 1,\n    \"countryId\": 1,\n    \"cityId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/committees",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdCommittees",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees/{{committeeId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees",
+										"{{committeeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putCommittees",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"description\": \"aaa - MOD\",\n    \"regionId\": 1,\n    \"countryId\": 1,\n    \"cityId\": 1\t\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/committees/{{committeeId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees",
+										"{{committeeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCommittees",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees/{{committeeId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees",
+										"{{committeeId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "cities",
+					"item": [
+						{
+							"name": "getCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/cities",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"cities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"cityId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"description\": \"aaa\",\n\t\"countryId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/cities",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"cities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/cities/{{cityId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"cities",
+										"{{cityId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"description\": \"aaa - MOD\",\n\t\"countryId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/cities/{{cityId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"cities",
+										"{{cityId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/cities/{{cityId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"cities",
+										"{{cityId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "countries",
+					"item": [
+						{
+							"name": "getCountries",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postCountries",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"countryId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"aaa\",\n    \"acronym\": \"BB\",\n    \"regionId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdCountries",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/countries/{{countryId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries",
+										"{{countryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putCountries",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"aaa - MOD\",\n    \"acronym\": \"BB\",\n    \"regionId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/countries/{{countryId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries",
+										"{{countryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCountries",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/countries/{{countryId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries",
+										"{{countryId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "regions",
+					"item": [
+						{
+							"name": "getRegions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/regions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"regions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postRegions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"regionId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"aaa\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/regions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"regions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdRegions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/regions/{{regionId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"regions",
+										"{{regionId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putRegions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"aaa - MOD\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/regions/{{regionId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"regions",
+										"{{regionId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRegions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/regions/{{regionId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"regions",
+										"{{regionId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "78c1298a-0897-4f9a-8fa9-a8296818acb8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6c84f86-5a90-48bc-93ae-67c5cb324c4d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "WithAuth",
+			"item": [
+				{
+					"name": "vehicles",
+					"item": [
+						{
+							"name": "getVehicles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/vehicles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vehicles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postVehicles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"vehicleId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"0\",\n    \"plate\": \"XXX\",\n    \"sign\": \"AAA\",\n    \"description\": \"BBB\",\n    \"committeeId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/vehicles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vehicles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdVehicles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/vehicles/{{vehicleId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vehicles",
+										"{{vehicleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putVehicles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"0\",\n    \"plate\": \"XXX\",\n    \"sign\": \"AAA - MOD\",\n    \"description\": \"BBB\",\n    \"committeeId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/vehicles/{{vehicleId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vehicles",
+										"{{vehicleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteVehicles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/vehicles/{{vehicleId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vehicles",
+										"{{vehicleId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "getUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"userId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AAA\",\n    \"password\": \"BBB\",\n    \"flgPasswordChanged\": \"0\",\n    \"name\": \"CCC\",\n    \"surname\": \"DDD\",\n    \"birth_date\": \"1988-05-15\",\n    \"email\": \"EEE\",\n    \"gender\": \"0\",\n    \"superuser\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/{{userId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AAA - MOD\",\n    \"password\": \"BBB\",\n    \"flgPasswordChanged\": \"0\",\n    \"name\": \"CCC\",\n    \"surname\": \"DDD\",\n    \"birth_date\": \"1988-05-15\",\n    \"email\": \"EEE\",\n    \"gender\": \"0\",\n    \"superuser\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/{{userId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/{{userId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "trips",
+					"item": [
+						{
+							"name": "getTrips",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postTrips",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"tripId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dateHour\": \"2020-01-01T01:00:00.000Z\",\n    \"flgDestination\": \"0\",\n    \"flgAr\": \"0\",\n    \"siteDeparture\": \"AAA\",\n    \"siteArrival\": \"BBB\",\n    \"serviceType\": \"CCC\",\n    \"patientData\": \"DDD\",\n    \"type\": \"0\",\n    \"extraUsers\": 1,\n    \"flgNurse\": \"0\",\n    \"notes\": \"n/a\",\n    \"committeeId\": 1,\n    \"vehicleId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdTrips",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips/{{tripId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips",
+										"{{tripId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putTrips",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dateHour\": \"2020-01-01T01:00:00.000Z\",\n    \"flgDestination\": \"0\",\n    \"flgAr\": \"0\",\n    \"siteDeparture\": \"AAA - MOD\",\n    \"siteArrival\": \"BBB\",\n    \"serviceType\": \"CCC\",\n    \"patientData\": \"DDD\",\n    \"type\": \"0\",\n    \"extraUsers\": 1,\n    \"flgNurse\": \"0\",\n    \"notes\": \"n/a\",\n    \"committeeId\": 1,\n    \"vehicleId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips/{{tripId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips",
+										"{{tripId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteTrips",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips/{{tripId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips",
+										"{{tripId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "trips_users",
+					"item": [
+						{
+							"name": "getTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"tripUserId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tripId\": 1,\n    \"userId\": 1,\n    \"role\": \"0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tripId\": 1,\n    \"userId\": 1,\n    \"role\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "committees_users",
+					"item": [
+						{
+							"name": "getCommitteesUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postCommitteesUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"committeeUserId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"committeeId\": 1,\n    \"userId\": 1,\n    \"role\": \"0\",\n    \"occupation\": \"0\",\n    \"disabled\": \"0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/committees_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdCommitteesUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees_users/{{committeeUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees_users",
+										"{{committeeUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putCommitteesUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"committeeId\": 1,\n    \"userId\": 1,\n    \"role\": \"0\",\n    \"occupation\": \"0\",\n    \"disabled\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/committees_users/{{committeeUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees_users",
+										"{{committeeUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCommitteesUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/committees_users/{{committeeUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"committees_users",
+										"{{committeeUserId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "default",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "f.marchetti",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d72794b8-b539-440d-8461-4a4c608a903d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f3795bd-7fcb-4980-a4b5-edfae86d4f2c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e42d0665-e80f-4155-bf72-90582013e9b0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7bf5d3a9-2417-4f62-965f-b22f112e4fb8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
