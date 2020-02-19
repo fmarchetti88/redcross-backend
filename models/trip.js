@@ -5,8 +5,13 @@ module.exports = (sequelize, type) => {
       primaryKey: true,
       autoIncrement: true
     },
-    dateHour: {
-      type: type.DATE,
+    date: {
+      type: type.DATEONLY,
+      allowNull: false,
+      unique: 'uniqueTrip'
+    },
+    hour: {
+      type: type.TIME,
       allowNull: false,
       unique: 'uniqueTrip'
     },
