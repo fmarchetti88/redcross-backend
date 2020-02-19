@@ -12,7 +12,7 @@ module.exports = (sequelize, type) => {
     },
     hour: {
       type: type.TIME,
-      allowNull: true,
+      allowNull: false,
       unique: 'uniqueTrip'
     },
     flgDestination: {

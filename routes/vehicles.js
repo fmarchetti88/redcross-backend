@@ -25,7 +25,7 @@ router.get('/vehicles/:id', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-// get vehicle by committee
+// get vehicles by committee
 router.get('/vehicles/findByCommittee/:committeeId', (req, res) => {
   Vehicle.findAll({
     ...includeModels,
