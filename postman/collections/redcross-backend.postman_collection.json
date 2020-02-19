@@ -1440,6 +1440,206 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "trips_users",
+					"item": [
+						{
+							"name": "getTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbfb8704-f2dc-4224-a639-05e586eb54f8",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a88f7fbe-c2e8-4c80-96b1-73c5765efd05",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"tripUserId\", jsonData.id);\r",
+											"\r",
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tripId\": 1,\n    \"userId\": 1,\n    \"role\": \"0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips_users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByIdTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tripId\": 1,\n    \"userId\": 1,\n    \"role\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteTripsUsers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4c1ef312-8fec-4ddf-b6b9-0443170fd8bd",
+										"exec": [
+											"pm.test(\"Expected response OK (200)\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/trips_users/{{tripUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"trips_users",
+										"{{tripUserId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "committees_users",
 					"item": [
 						{
