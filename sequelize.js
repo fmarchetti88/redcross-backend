@@ -156,7 +156,8 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 2
   });
   Trip.create({
-    dateHour: new Date(2020, 2, 10, 10, 00),
+    date: new Date(),
+    hour: '8:30',
     flgDestination: 0,
     flgAr: 0,
     siteDeparture: 'via della libertà, 10 - Cagli',
@@ -181,7 +182,8 @@ sequelize.sync({ force: true }).then(() => {
     role: 1
   });
   Trip.create({
-    dateHour: new Date(2020, 3, 10, 10, 00),
+    date: new Date(),
+    hour: '13:00',
     flgDestination: 0,
     flgAr: 0,
     siteDeparture: 'via della libertà, 11 - Cagli',

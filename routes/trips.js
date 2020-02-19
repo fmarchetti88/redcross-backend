@@ -51,7 +51,8 @@ router.post('/trips', (req, res) => {
 router.put('/trips/:id', (req, res) =>
   Trip.update(
     {
-      dateHour: req.body.dateHour,
+      date: req.body.date,
+      hour: req.body.hour,
       flgDestination: req.body.flgDestination,
       flgAr: req.body.flgAr,
       siteDeparture: req.body.siteDeparture,
