@@ -165,7 +165,7 @@ sequelize.sync({ force: true }).then(() => {
     serviceType: 'Dialisi',
     patientData: 'Marco Rossi',
     type: 0,
-    extraUsers: 1,
+    extraUsers: 2,
     flgNurse: 1,
     notes: 'n/a',
     committeeId: 1,
@@ -191,7 +191,7 @@ sequelize.sync({ force: true }).then(() => {
     serviceType: 'Dialisi',
     patientData: null,
     type: 1,
-    extraUsers: 0,
+    extraUsers: 3,
     flgNurse: 0,
     notes: 'n/a',
     committeeId: 1,
@@ -201,6 +201,22 @@ sequelize.sync({ force: true }).then(() => {
     userId: 2,
     tripId: 2,
     role: 1
+  });
+  Trip.create({
+    date: new Date(),
+    hour: '15:00',
+    flgDestination: 1,
+    flgAr: 1,
+    siteDeparture: 'via pirandello, 50 - Roma',
+    siteArrival: 'via martin luter king, 2 - Pesaro',
+    serviceType: 'Stadio',
+    patientData: null,
+    type: 1,
+    extraUsers: 2,
+    flgNurse: 0,
+    notes: 'Stadio di Pesaro',
+    committeeId: 1,
+    vehicleId: 2
   });
 });
 

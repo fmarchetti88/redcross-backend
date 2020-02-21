@@ -22,7 +22,7 @@ module.exports = (sequelize, type) => {
       allowNull: false
     },
     role: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     }

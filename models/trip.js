@@ -16,13 +16,13 @@ module.exports = (sequelize, type) => {
       unique: 'uniqueTrip'
     },
     flgDestination: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0,
       unique: 'uniqueTrip'
     },
     flgAr: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0,
       unique: 'uniqueTrip'
@@ -45,7 +45,7 @@ module.exports = (sequelize, type) => {
       type: type.STRING
     },
     type: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
@@ -55,7 +55,7 @@ module.exports = (sequelize, type) => {
       defaultValue: 0
     },
     flgNurse: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     },

@@ -15,7 +15,7 @@ module.exports = (sequelize, type) => {
       allowNull: false
     },
     flgPasswordChanged: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
@@ -35,12 +35,12 @@ module.exports = (sequelize, type) => {
       type: type.STRING
     },
     gender: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
     superuser: {
-      type: type.DECIMAL(1, 0),
+      type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
     }
