@@ -48,7 +48,7 @@ router.put('/trips_users/:id', (req, res) =>
     }
   )
     .then(result => res.json(result))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 // delete trip_user
@@ -59,7 +59,7 @@ router.delete('/trips_users/:id', (req, res) =>
     }
   })
     .then(trip_user => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 // delete trip_user by trip
@@ -70,7 +70,7 @@ router.delete('/trips_users/deleteByTrip/:id', (req, res) =>
     }
   })
     .then(trip_user => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 module.exports = router;

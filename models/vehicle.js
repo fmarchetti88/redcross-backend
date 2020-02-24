@@ -25,6 +25,11 @@ module.exports = (sequelize, type) => {
         key: 'id'
       },
       allowNull: false
+    },
+    disabled: {
+      type: type.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   });
 };
