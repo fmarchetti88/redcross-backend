@@ -5,20 +5,14 @@ var router = require('express').Router();
 router.get('/trips_users', (req, res) => {
   console.log(req);
   TripUser.findAll({
-    include: [
-      { model: Trip },
-      { model: User }
-    ]
+    include: [{ model: Trip }, { model: User }]
   }).then(trips_users => res.json(trips_users));
 });
 
 // get trip_user by id
 router.get('/trips_users/:id', (req, res) => {
   TripUser.findByPk(req.params.id, {
-    include: [
-      { model: Trip },
-      { model: User }
-    ]
+    include: [{ model: Trip }, { model: User }]
   })
     .then(result => {
       if (!result) {
@@ -45,7 +39,7 @@ router.put('/trips_users/:id', (req, res) =>
     {
       tripId: req.body.tripId,
       userId: req.body.userId,
-      role: req.body.role,
+      role: req.body.role
     },
     {
       where: {
@@ -62,6 +56,17 @@ router.delete('/trips_users/:id', (req, res) =>
   TripUser.destroy({
     where: {
       id: req.params.id
+    }
+  })
+    .then(trip_user => res.status(200).json({}))
+    .catch(err => req.status(409).json(err))
+);
+
+// delete trip_user by trip
+router.delete('/trips_users/deleteByTrip/:id', (req, res) =>
+  TripUser.destroy({
+    where: {
+      tripId: req.params.id
     }
   })
     .then(trip_user => res.status(200).json({}))
