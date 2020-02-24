@@ -1,5 +1,7 @@
+const BCrypt = require('bcrypt');
+
 module.exports = (sequelize, type) => {
-  return sequelize.define('user', {
+  const User = sequelize.define('user', {
     id: {
       type: type.INTEGER,
       primaryKey: true,
@@ -45,4 +47,20 @@ module.exports = (sequelize, type) => {
       defaultValue: 0
     }
   });
+
+  function generateHash(user) {
+    if (user === null) {
+        throw new Error('user not found');
+    }
+    else if (!user.changed('password')) return user.password; 
+    else {
+        let salt = BCrypt.genSaltSync();
+        return user.password = BCrypt.hashSync(user.password, salt);
+    }
+  }
+
+  User.beforeCreate(generateHash);
+  User.beforeUpdate(generateHash);
+
+  return User;
 };

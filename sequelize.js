@@ -8,17 +8,23 @@ const VehicleModel = require('./models/vehicle');
 const CommitteeUserModel = require('./models/committee_user');
 const TripModel = require('./models/trip');
 const TripUserModel = require('./models/trip_user');
+const SequelizeConfig = require('./sequelize_config');
 
-const sequelize = new Sequelize('redcross', 'root', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
+const sequelize = new Sequelize(
+  SequelizeConfig.getDbName(), 
+  SequelizeConfig.getDbUser(), 
+  SequelizeConfig.getDbPwd(), 
+  {
+    host: SequelizeConfig.getDbHost(),
+    dialect: 'mysql',
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   }
-});
+);
 
 const User = UserModel(sequelize, Sequelize);
 const Region = RegionModel(sequelize, Sequelize);

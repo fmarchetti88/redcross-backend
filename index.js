@@ -13,8 +13,14 @@ app.use(require('./routes_no_auth'));
 
 app.use(basicAuth({ authorizer: myAuthorizer, authorizeAsync: true }));
 async function myAuthorizer(username, password, cb) {
-  const user = await User.findOne({ where: { username, password } });
+  const user = await findUser(username, password);
   return cb(null, !!user);
+}
+
+function findUser(username, password) {
+  let salt = BCrypt.genSaltSync();
+  let encPassword = BCrypt.hashSync(password, salt);  
+  return User.findOne({ where: { username, encPassword }});
 }
 
 app.use(require('./routes'));
