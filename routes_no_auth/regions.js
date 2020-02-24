@@ -42,7 +42,7 @@ router.put('/regions/:id', (req, res) =>
     }
   )
     .then(result => res.json(result))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 router.delete('/regions/:id', (req, res) =>
@@ -52,7 +52,7 @@ router.delete('/regions/:id', (req, res) =>
     }
   })
     .then(region => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 module.exports = router;

@@ -145,21 +145,32 @@ sequelize.sync({ force: true }).then(() => {
     plate: 'EA072RJ',
     sign: '51A',
     description: 'Ambulanza 1',
-    committeeId: 1
+    committeeId: 1,
+    disabled: 0
   });
   Vehicle.create({
     type: 1,
     plate: 'EA072AA',
     sign: '50A',
     description: 'Ambulanza 2',
-    committeeId: 1
+    committeeId: 1,
+    disabled: 0
   });
   Vehicle.create({
     type: 1,
     plate: 'DC002GL',
     sign: '52A',
     description: 'Ambulanza 2',
-    committeeId: 2
+    committeeId: 2,
+    disabled: 0
+  });
+  Vehicle.create({
+    type: 1,
+    plate: 'DF002GL',
+    sign: '53A',
+    description: 'Ambulanza 3 Disabilitata',
+    committeeId: 1,
+    disabled: 1
   });
   Trip.create({
     date: new Date(),

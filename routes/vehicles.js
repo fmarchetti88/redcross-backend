@@ -58,7 +58,8 @@ router.put('/vehicles/:id', (req, res) =>
       plate: req.body.plate,
       sign: req.body.sign,
       description: req.body.description,
-      committeeId: req.body.committeeId
+      committeeId: req.body.committeeId,
+      disabled: req.body.disabled
     },
     {
       where: {
@@ -67,7 +68,7 @@ router.put('/vehicles/:id', (req, res) =>
     }
   )
     .then(result => res.json(result))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 router.delete('/vehicles/:id', (req, res) =>
@@ -77,7 +78,7 @@ router.delete('/vehicles/:id', (req, res) =>
     }
   })
     .then(vehicle => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 module.exports = router;

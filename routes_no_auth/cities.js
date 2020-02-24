@@ -47,7 +47,7 @@ router.put('/cities/:id', (req, res) =>
     }
   )
     .then(result => res.json(result))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 router.delete('/cities/:id', (req, res) =>
@@ -57,7 +57,7 @@ router.delete('/cities/:id', (req, res) =>
     }
   })
     .then(city => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 module.exports = router;

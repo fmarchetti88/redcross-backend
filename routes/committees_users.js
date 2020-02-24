@@ -53,7 +53,7 @@ router.put('/committees_users/:id', (req, res) =>
     }
   )
     .then(result => res.json(result))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 router.delete('/committees_users/:id', (req, res) =>
@@ -63,7 +63,7 @@ router.delete('/committees_users/:id', (req, res) =>
     }
   })
     .then(committees_users => res.status(200).json({}))
-    .catch(err => req.status(409).json(err))
+    .catch(err => res.status(409).json(err))
 );
 
 module.exports = router;
