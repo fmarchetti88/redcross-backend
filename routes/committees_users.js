@@ -66,4 +66,14 @@ router.delete('/committees_users/:id', (req, res) =>
     .catch(err => res.status(409).json(err))
 );
 
+router.delete('/committees_users/deleteByUserId/:userId', (req, res) =>
+  CommitteeUser.destroy({
+    where: {
+      userId: req.params.userId
+    }
+  })
+    .then(committees_users => res.status(200).json({}))
+    .catch(err => res.status(409).json(err))
+);
+
 module.exports = router;

@@ -125,7 +125,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     role: 2,
     occupation: 1,
-    disabled: 1
+    disabled: 0
   });
   CommitteeUser.create({
     userId: 2,

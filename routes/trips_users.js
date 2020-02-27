@@ -25,6 +25,23 @@ router.get('/trips_users/:id', (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
+// get trip_user by userId
+router.get('/trips_users/findByUserId/:userId', (req, res) => {
+  TripUser.findAll({
+    include: [{ model: Trip }, { model: User }],
+    where: { userId: req.params.userId }
+  })
+    .then(result => {
+      if (!result) {
+        return res.status(404).json({
+          error: 'trip_user not found'
+        });
+      }
+      return res.json(result);
+    })
+    .catch(err => res.status(500).json(err));
+});
+
 // create a trip_user
 router.post('/trips_users', (req, res) => {
   console.log(req.body);
