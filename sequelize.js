@@ -92,7 +92,7 @@ sequelize.sync({ force: true }).then(() => {
     email: 'f.marchetti@email.it',
     gender: 0,
     superuser: 1
-  });
+  }).then(
   User.create({
     username: 'f.torri',
     password: 'default',
@@ -100,7 +100,7 @@ sequelize.sync({ force: true }).then(() => {
     surname: 'Torri',
     birth_date: new Date(1960, 02, 11),
     gender: 0
-  });
+  })).then(
   User.create({
     username: 'e.rossi',
     password: 'default',
@@ -108,7 +108,7 @@ sequelize.sync({ force: true }).then(() => {
     surname: 'Rossi',
     birth_date: new Date(1960, 02, 11),
     gender: 1
-  });
+  })).then(function() {
   Committee.create({
     description: `Comitato di SantAngelo in Vado`,
     cityId: 2,
@@ -131,7 +131,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     role: 2,
     occupation: 1,
-    disabled: 1
+    disabled: 0
   });
   CommitteeUser.create({
     userId: 2,
@@ -235,6 +235,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     vehicleId: 2
   });
+});
 });
 
 module.exports = {

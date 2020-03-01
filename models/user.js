@@ -1,4 +1,4 @@
-const BCrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, type) => {
   const User = sequelize.define('user', {
@@ -48,15 +48,48 @@ module.exports = (sequelize, type) => {
     }
   });
 
-  function generateHash(user) {
-    if (user === null) {
-        throw new Error('user not found');
-    }
-    else if (!user.changed('password')) return user.password; 
-    else {
-        let salt = BCrypt.genSaltSync();
-        return user.password = BCrypt.hashSync(user.password, salt);
-    }
+  // function generateHash(user) {
+  //   return new Promise((resolve, reject) => {     
+  //     if (user === null) {
+  //         throw new Error('user not found');
+  //     }
+  //     else if (!user.changed('password')) return user.password; 
+  //     else {
+  //         let salt = bcrypt.genSaltSync();
+  //         return user.password = bcrypt.hashSync(user.password, salt);
+  //     }
+  //   })     
+  // }
+ 
+  // function generateHash(user, options, cb) {
+  //   return new Promise((resolve, reject) => {    
+  //     if (user === null) {
+  //       reject('user not found');
+  //     }
+  //     else if (user.changed('password')) {
+  //       user.password = await (async function() {
+  //         return new Promise((resolve, reject) => {
+  //           let salt = bcrypt.genSaltSync();
+  //           bcrypt.hashSync(user.password, salt, function(err, hash) {
+  //             if (err) reject(err);
+  //             resolve(hash);
+  //           });
+  //         });
+  //       });
+  //     }
+  //     resolve(cb(null, options));
+  //   });
+  // }
+
+  function generateHash(user, options) {
+    let salt = bcrypt.genSaltSync();
+    return bcrypt.hash(user.password, salt)
+      .then(hash => {
+          user.password = hash;
+      })
+      .catch(err => { 
+          throw new Error(); 
+      });
   }
 
   User.beforeCreate(generateHash);

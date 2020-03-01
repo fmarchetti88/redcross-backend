@@ -1,7 +1,11 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const bodyParser = require('body-parser');
 const basicAuth = require('express-basic-auth');
-var cors = require('cors');
+const cors = require('cors');
+const bcrypt = require('bcrypt');
 const { User } = require('./sequelize');
 
 const app = express();
@@ -13,14 +17,33 @@ app.use(require('./routes_no_auth'));
 
 app.use(basicAuth({ authorizer: myAuthorizer, authorizeAsync: true }));
 async function myAuthorizer(username, password, cb) {
-  const user = await findUser(username, password);
-  return cb(null, !!user);
+  findUserAsync(username, password,
+    (user) => {
+      return cb(null, user);
+    }, 
+    (failure) => {
+      return cb(null, false);
+    }
+  );
 }
 
-function findUser(username, password) {
-  let salt = BCrypt.genSaltSync();
-  let encPassword = BCrypt.hashSync(password, salt);  
-  return User.findOne({ where: { username, encPassword }});
+function findUserAsync(username, password, successCallback, failureCallback) {
+  User.findOne({ where: { username }})
+    .then(
+      (user) => { 
+        bcrypt.compare(password, user.password).then((result) => {
+          if (result == true) {
+            successCallback(user);
+          } else {
+            failureCallback(null);
+          }
+        })
+      }
+    )
+    .catch( (err) => { 
+      console.log(err); 
+      failureCallback(null); 
+    } );
 }
 
 app.use(require('./routes'));
