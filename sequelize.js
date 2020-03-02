@@ -54,30 +54,30 @@ TripUser.belongsTo(User);
 Trip.hasMany(TripUser);
 User.hasMany(TripUser);
 
-sequelize.sync({ force: true }).then(() => {
-  Region.create({
+sequelize.sync({ force: true }).then(async () => {
+  await Region.create({
     description: 'Marche'
   });
-  Country.create({
+  await Country.create({
     description: 'Pesaro/Urbino',
     acronym: 'PU',
     regionId: 1
   });
-  City.create({
+  await City.create({
     description: 'Cagli',
     countryId: 1
   });
-  City.create({
+  await City.create({
     description: `SantAngelo in Vado`,
     countryId: 1
   });
-  Committee.create({
+  await Committee.create({
     description: 'Comitato di Cagli',
     cityId: 1,
     countryId: 1,
     regionId: 1
   });
-  User.create({
+  await User.create({
     username: 'f.marchetti',
     password: 'default',
     name: 'Filippo',
@@ -87,7 +87,7 @@ sequelize.sync({ force: true }).then(() => {
     gender: 0,
     superuser: 1
   });
-  User.create({
+  await User.create({
     username: 'f.torri',
     password: 'default',
     name: 'Filippo',
@@ -95,7 +95,7 @@ sequelize.sync({ force: true }).then(() => {
     birth_date: new Date(1960, 02, 11),
     gender: 0
   });
-  User.create({
+  await User.create({
     username: 'e.rossi',
     password: 'default',
     name: 'Elena',
@@ -103,38 +103,38 @@ sequelize.sync({ force: true }).then(() => {
     birth_date: new Date(1960, 02, 11),
     gender: 1
   });
-  Committee.create({
+  await Committee.create({
     description: `Comitato di SantAngelo in Vado`,
     cityId: 2,
     countryId: 1,
     regionId: 1
   });
-  CommitteeUser.create({
+  await CommitteeUser.create({
     userId: 1,
     committeeId: 1
   });
-  CommitteeUser.create({
+  await CommitteeUser.create({
     userId: 2,
     committeeId: 1,
     role: 1,
     occupation: 0,
     disabled: 0
   });
-  CommitteeUser.create({
+  await CommitteeUser.create({
     userId: 3,
     committeeId: 1,
     role: 2,
     occupation: 1,
     disabled: 0
   });
-  CommitteeUser.create({
+  await CommitteeUser.create({
     userId: 2,
     committeeId: 2,
     role: 1,
     occupation: 1,
     disabled: 0
   });
-  Vehicle.create({
+  await Vehicle.create({
     type: 0,
     plate: 'EA072RJ',
     sign: '51A',
@@ -142,7 +142,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     disabled: 0
   });
-  Vehicle.create({
+  await Vehicle.create({
     type: 1,
     plate: 'EA072AA',
     sign: '50A',
@@ -150,7 +150,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     disabled: 0
   });
-  Vehicle.create({
+  await Vehicle.create({
     type: 1,
     plate: 'DC002GL',
     sign: '52A',
@@ -158,7 +158,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 2,
     disabled: 0
   });
-  Vehicle.create({
+  await Vehicle.create({
     type: 1,
     plate: 'DF002GL',
     sign: '53A',
@@ -166,7 +166,7 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     disabled: 1
   });
-  Trip.create({
+  await Trip.create({
     date: new Date(),
     hour: '8:30',
     flgDestination: 1,
@@ -182,17 +182,17 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     vehicleId: 1
   });
-  TripUser.create({
+  await TripUser.create({
     userId: 1,
     tripId: 1,
     role: 0
   });
-  TripUser.create({
+  await TripUser.create({
     userId: 2,
     tripId: 1,
     role: 1
   });
-  Trip.create({
+  await Trip.create({
     date: new Date(),
     hour: '13:00',
     flgDestination: 0,
@@ -208,12 +208,12 @@ sequelize.sync({ force: true }).then(() => {
     committeeId: 1,
     vehicleId: 1
   });
-  TripUser.create({
+  await TripUser.create({
     userId: 2,
     tripId: 2,
     role: 1
   });
-  Trip.create({
+  await Trip.create({
     date: new Date(),
     hour: '15:00',
     flgDestination: 1,
