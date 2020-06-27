@@ -72,6 +72,7 @@ router.put('/trips/:id', (req, res) =>
       type: req.body.type,
       extraUsers: req.body.extraUsers,
       flgNurse: req.body.flgNurse,
+      flgToNotify: req.body.flgToNotify,
       notes: req.body.notes,
       committeeId: req.body.committeeId,
       vehicleId: req.body.vehicleId

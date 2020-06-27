@@ -59,6 +59,11 @@ module.exports = (sequelize, type) => {
       allowNull: false,
       defaultValue: 0
     },
+    flgToNotify: {
+      type: type.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
     notes: {
       type: type.STRING(1234)
     },

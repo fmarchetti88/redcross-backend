@@ -197,6 +197,7 @@ sequelize.sync({ force: true }).then(async () => {
     type: 0,
     extraUsers: 2,
     flgNurse: 1,
+    flgToNotify: 0,
     notes: 'n/a',
     committeeId: 1,
     vehicleId: 1
@@ -223,6 +224,7 @@ sequelize.sync({ force: true }).then(async () => {
     type: 1,
     extraUsers: 3,
     flgNurse: 0,
+    flgToNotify: 0,
     notes: 'n/a',
     committeeId: 1,
     vehicleId: 1
@@ -244,6 +246,7 @@ sequelize.sync({ force: true }).then(async () => {
     type: 1,
     extraUsers: 2,
     flgNurse: 0,
+    flgToNotify: 1,
     notes: 'Stadio di Pesaro',
     committeeId: 1,
     vehicleId: 2
