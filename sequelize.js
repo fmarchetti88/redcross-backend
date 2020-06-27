@@ -85,6 +85,7 @@ sequelize.sync({ force: true }).then(async () => {
     birth_date: new Date(1988, 04, 15),
     email: 'f.marchetti@email.it',
     gender: 0,
+    withDrivingLicense: 1,
     superuser: 1
   });
   await User.create({
@@ -93,7 +94,17 @@ sequelize.sync({ force: true }).then(async () => {
     name: 'Filippo',
     surname: 'Torri',
     birth_date: new Date(1960, 02, 11),
-    gender: 0
+    gender: 0,
+    withDrivingLicense: 1
+  });
+  await User.create({
+    username: 's.dipriolo',
+    password: 'default',
+    name: 'Sebastiano',
+    surname: 'Di Priolo',
+    birth_date: new Date(1950, 04, 10),
+    gender: 0,
+    withDrivingLicense: 0
   });
   await User.create({
     username: 'e.rossi',
@@ -101,7 +112,8 @@ sequelize.sync({ force: true }).then(async () => {
     name: 'Elena',
     surname: 'Rossi',
     birth_date: new Date(1960, 02, 11),
-    gender: 1
+    gender: 1,
+    withDrivingLicense: 0
   });
   await Committee.create({
     description: `Comitato di SantAngelo in Vado`,
@@ -122,6 +134,13 @@ sequelize.sync({ force: true }).then(async () => {
   });
   await CommitteeUser.create({
     userId: 3,
+    committeeId: 1,
+    role: 2,
+    occupation: 2,
+    disabled: 0
+  });
+  await CommitteeUser.create({
+    userId: 4,
     committeeId: 1,
     role: 2,
     occupation: 1,

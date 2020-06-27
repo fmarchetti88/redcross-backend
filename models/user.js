@@ -43,6 +43,11 @@ module.exports = (sequelize, type) => {
       type: type.INTEGER,
       allowNull: false,
       defaultValue: 0
+    },
+    withDrivingLicense: {
+      type: type.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   });
 };
