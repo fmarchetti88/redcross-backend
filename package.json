@@ -1,26 +1,13 @@
 {
-  "name": "codementorx-article",
+  "name": "redcross-backend",
   "version": "1.0.0",
-  "description": "repository for sequelize article",
+  "description": "redcross-backend",
   "main": "index.js",
   "scripts": {
     "build": "npm install",
-    "start": "node .\\index.js",
+    "start": "node index.js",
     "test": "echo \"No test\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mirkojotic/codementorx-sequelize.git"
-  },
-  "keywords": [
-    "sequelize"
-  ],
-  "author": "joticmirko@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mirkojotic/codementorx-sequelize/issues"
-  },
-  "homepage": "https://github.com/mirkojotic/codementorx-sequelize#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
