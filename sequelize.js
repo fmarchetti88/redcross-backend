@@ -60,11 +60,13 @@ sequelize.sync({ force: true }).then(async () => {
   await Region.create({
     description: 'Marche'
   });
+  const regions = await Region.findAll();
   await Country.create({
     description: 'Pesaro/Urbino',
     acronym: 'PU',
     regionId: 1
   });
+  const countries = await Country.findAll();
   await City.create({
     description: 'Cagli',
     countryId: 1
@@ -73,12 +75,20 @@ sequelize.sync({ force: true }).then(async () => {
     description: `SantAngelo in Vado`,
     countryId: 1
   });
+  const cities = await City.findAll();
   await Committee.create({
     description: 'Comitato di Cagli',
     cityId: 1,
     countryId: 1,
     regionId: 1
   });
+  await Committee.create({
+    description: `Comitato di SantAngelo in Vado`,
+    cityId: cities[1].id,
+    countryId: countries[0].id,
+    regionId: regions[0].id
+  });
+  const committes = await Committee.findAll();
   await User.create({
     username: 'f.marchetti',
     password: 'default',
@@ -117,40 +127,35 @@ sequelize.sync({ force: true }).then(async () => {
     gender: 1,
     withDrivingLicense: 0
   });
-  await Committee.create({
-    description: `Comitato di SantAngelo in Vado`,
-    cityId: 2,
-    countryId: 1,
-    regionId: 1
+  const users = await User.findAll();
+  await CommitteeUser.create({
+    userId: users[0].id,
+    committeeId: committes[0].id
   });
   await CommitteeUser.create({
-    userId: 1,
-    committeeId: 1
-  });
-  await CommitteeUser.create({
-    userId: 2,
-    committeeId: 1,
+    userId: users[1].id,
+    committeeId: committes[0].id,
     role: 1,
     occupation: 0,
     disabled: 0
   });
   await CommitteeUser.create({
-    userId: 3,
-    committeeId: 1,
+    userId: users[2].id,
+    committeeId: committes[0].id,
     role: 2,
     occupation: 2,
     disabled: 0
   });
   await CommitteeUser.create({
-    userId: 4,
-    committeeId: 1,
+    userId: users[3].id,
+    committeeId: committes[0].id,
     role: 2,
     occupation: 1,
     disabled: 0
   });
   await CommitteeUser.create({
-    userId: 2,
-    committeeId: 2,
+    userId: users[1].id,
+    committeeId: committes[1].id,
     role: 1,
     occupation: 1,
     disabled: 0
@@ -160,7 +165,7 @@ sequelize.sync({ force: true }).then(async () => {
     plate: 'EA072RJ',
     sign: '51A',
     description: 'Ambulanza 1',
-    committeeId: 1,
+    committeeId: committes[0].id,
     disabled: 0
   });
   await Vehicle.create({
@@ -168,7 +173,7 @@ sequelize.sync({ force: true }).then(async () => {
     plate: 'EA072AA',
     sign: '50A',
     description: 'Ambulanza 2',
-    committeeId: 1,
+    committeeId: committes[0].id,
     disabled: 0
   });
   await Vehicle.create({
@@ -176,7 +181,7 @@ sequelize.sync({ force: true }).then(async () => {
     plate: 'DC002GL',
     sign: '52A',
     description: 'Ambulanza 2',
-    committeeId: 2,
+    committeeId: committes[1].id,
     disabled: 0
   });
   await Vehicle.create({
@@ -184,9 +189,10 @@ sequelize.sync({ force: true }).then(async () => {
     plate: 'DF002GL',
     sign: '53A',
     description: 'Ambulanza 3 Disabilitata',
-    committeeId: 1,
+    committeeId: committes[0].id,
     disabled: 1
   });
+  const vehicles = await Vehicle.findAll();
   await Trip.create({
     date: new Date(),
     hour: '8:30',
@@ -201,18 +207,8 @@ sequelize.sync({ force: true }).then(async () => {
     flgNurse: 1,
     flgToNotify: 0,
     notes: 'n/a',
-    committeeId: 1,
-    vehicleId: 1
-  });
-  await TripUser.create({
-    userId: 1,
-    tripId: 1,
-    role: 0
-  });
-  await TripUser.create({
-    userId: 2,
-    tripId: 1,
-    role: 1
+    committeeId: committes[0].id,
+    vehicleId: vehicles[0].id
   });
   await Trip.create({
     date: new Date(),
@@ -228,13 +224,8 @@ sequelize.sync({ force: true }).then(async () => {
     flgNurse: 0,
     flgToNotify: 0,
     notes: 'n/a',
-    committeeId: 1,
-    vehicleId: 1
-  });
-  await TripUser.create({
-    userId: 2,
-    tripId: 2,
-    role: 1
+    committeeId: committes[0].id,
+    vehicleId: vehicles[0].id
   });
   await Trip.create({
     date: new Date(),
@@ -250,8 +241,24 @@ sequelize.sync({ force: true }).then(async () => {
     flgNurse: 0,
     flgToNotify: 1,
     notes: 'Stadio di Pesaro',
-    committeeId: 1,
-    vehicleId: 2
+    committeeId: committes[0].id,
+    vehicleId: vehicles[1].id
+  });
+  const trips = await Trip.findAll();
+  await TripUser.create({
+    userId: users[0].id,
+    tripId: trips[0].id,
+    role: 0
+  });
+  await TripUser.create({
+    userId: users[1].id,
+    tripId: trips[0].id,
+    role: 1
+  });
+  await TripUser.create({
+    userId: users[1].id,
+    tripId: trips[1].id,
+    role: 1
   });
 });
 
