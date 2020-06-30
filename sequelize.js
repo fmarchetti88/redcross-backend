@@ -9,14 +9,16 @@ const CommitteeUserModel = require('./models/committee_user');
 const TripModel = require('./models/trip');
 const TripUserModel = require('./models/trip_user');
 
-const sequelize = new Sequelize('redcross', 'root', 'password', {
-  host: 'localhost',
-  dialect: 'mysql',
+const dbConfig = require('./config/db.config.js');
+
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
   pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
+    max: dbConfig.pool.max,
+    min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.idle
   }
 });
 
