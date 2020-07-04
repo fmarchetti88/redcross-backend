@@ -1,4 +1,5 @@
 const { Committee, Trip, TripUser, User, Vehicle } = require('../sequelize');
+const { authJwt } = require('../middlewares');
 var router = require('express').Router();
 
 const includeModel = {
@@ -13,13 +14,13 @@ const includeModel = {
 };
 
 // get all trips
-router.get('/trips', (req, res) => {
+router.get('/trips', [authJwt.verifyToken], (req, res) => {
   console.log(req);
   Trip.findAll(includeModel).then(trips => res.json(trips));
 });
 
 // get trip
-router.get('/trips/:id', (req, res) => {
+router.get('/trips/:id', [authJwt.verifyToken], (req, res) => {
   Trip.findByPk(req.params.id, includeModel)
     .then(result => {
       if (!result) {
@@ -33,7 +34,7 @@ router.get('/trips/:id', (req, res) => {
 });
 
 // create a trip
-router.post('/trips', (req, res) => {
+router.post('/trips', [authJwt.verifyToken], (req, res) => {
   console.log(req.body);
   Trip.create(req.body)
     .then(trip => res.json(trip))
@@ -41,7 +42,7 @@ router.post('/trips', (req, res) => {
 });
 
 // get trips by committee
-router.get('/trips/findByCommittee/:committeeId', (req, res) => {
+router.get('/trips/findByCommittee/:committeeId', [authJwt.verifyToken], (req, res) => {
   Trip.findAll({
     ...includeModel,
     where: { committeeId: req.params.committeeId }
@@ -58,7 +59,7 @@ router.get('/trips/findByCommittee/:committeeId', (req, res) => {
 });
 
 // modify trip
-router.put('/trips/:id', (req, res) =>
+router.put('/trips/:id', [authJwt.verifyToken], (req, res) =>
   Trip.update(
     {
       date: req.body.date,
@@ -87,7 +88,7 @@ router.put('/trips/:id', (req, res) =>
     .catch(err => res.status(409).json(err))
 );
 
-router.delete('/trips/:id', (req, res) =>
+router.delete('/trips/:id', [authJwt.verifyToken], (req, res) =>
   Trip.destroy({
     where: {
       id: req.params.id

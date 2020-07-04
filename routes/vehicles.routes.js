@@ -1,4 +1,5 @@
 const { Vehicle, Committee } = require('../sequelize');
+const { authJwt } = require('../middlewares');
 var router = require('express').Router();
 
 const includeModels = {
@@ -6,13 +7,13 @@ const includeModels = {
 };
 
 // get all ehicles
-router.get('/vehicles', (req, res) => {
+router.get('/vehicles', [authJwt.verifyToken], (req, res) => {
   console.log(req);
   Vehicle.findAll(includeModels).then(vehicles => res.json(vehicles));
 });
 
 // get vehicle
-router.get('/vehicles/:id', (req, res) => {
+router.get('/vehicles/:id', [authJwt.verifyToken], (req, res) => {
   Vehicle.findByPk(req.params.id, includeModels)
     .then(result => {
       if (!result) {
@@ -26,7 +27,7 @@ router.get('/vehicles/:id', (req, res) => {
 });
 
 // get vehicles by committee
-router.get('/vehicles/findByCommittee/:committeeId', (req, res) => {
+router.get('/vehicles/findByCommittee/:committeeId', [authJwt.verifyToken], (req, res) => {
   Vehicle.findAll({
     ...includeModels,
     where: { committeeId: req.params.committeeId }
@@ -43,7 +44,7 @@ router.get('/vehicles/findByCommittee/:committeeId', (req, res) => {
 });
 
 // create a vehicle
-router.post('/vehicles', (req, res) => {
+router.post('/vehicles', [authJwt.verifyToken], (req, res) => {
   console.log(req.body);
   Vehicle.create(req.body)
     .then(vehicle => res.json(vehicle))
@@ -51,7 +52,7 @@ router.post('/vehicles', (req, res) => {
 });
 
 // modify vehicle
-router.put('/vehicles/:id', (req, res) =>
+router.put('/vehicles/:id', [authJwt.verifyToken], (req, res) =>
   Vehicle.update(
     {
       type: req.body.type,
@@ -71,7 +72,7 @@ router.put('/vehicles/:id', (req, res) =>
     .catch(err => res.status(409).json(err))
 );
 
-router.delete('/vehicles/:id', (req, res) =>
+router.delete('/vehicles/:id', [authJwt.verifyToken], (req, res) =>
   Vehicle.destroy({
     where: {
       id: req.params.id

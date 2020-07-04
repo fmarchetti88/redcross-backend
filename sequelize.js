@@ -8,6 +8,7 @@ const VehicleModel = require('./models/vehicle');
 const CommitteeUserModel = require('./models/committee_user');
 const TripModel = require('./models/trip');
 const TripUserModel = require('./models/trip_user');
+const bcrypt = require('bcryptjs');
 
 const dbConfig = require('./config/db.config.js');
 
@@ -91,7 +92,7 @@ sequelize.sync({ force: true }).then(async () => {
   const committes = await Committee.findAll();
   await User.create({
     username: 'f.marchetti',
-    password: 'default',
+    password: bcrypt.hashSync('default', 8),
     name: 'Filippo',
     surname: 'Marchetti',
     birth_date: new Date(1988, 04, 15),
@@ -102,7 +103,7 @@ sequelize.sync({ force: true }).then(async () => {
   });
   await User.create({
     username: 'f.torri',
-    password: 'default',
+    password: bcrypt.hashSync('default', 8),
     name: 'Filippo',
     surname: 'Torri',
     birth_date: new Date(1960, 02, 11),
@@ -111,7 +112,7 @@ sequelize.sync({ force: true }).then(async () => {
   });
   await User.create({
     username: 's.dipriolo',
-    password: 'default',
+    password: bcrypt.hashSync('default', 8),
     name: 'Sebastiano',
     surname: 'Di Priolo',
     birth_date: new Date(1950, 04, 10),
@@ -120,7 +121,7 @@ sequelize.sync({ force: true }).then(async () => {
   });
   await User.create({
     username: 'e.rossi',
-    password: 'default',
+    password: bcrypt.hashSync('default', 8),
     name: 'Elena',
     surname: 'Rossi',
     birth_date: new Date(1960, 02, 11),

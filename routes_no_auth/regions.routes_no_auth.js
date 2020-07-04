@@ -1,4 +1,4 @@
-const { Region } = require('./../sequelize');
+const { Region } = require('../sequelize');
 var router = require('express').Router();
 
 // get all regions

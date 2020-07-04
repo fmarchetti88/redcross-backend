@@ -1,8 +1,9 @@
 const { Trip, TripUser, User } = require('../sequelize');
+const { authJwt } = require('../middlewares');
 var router = require('express').Router();
 
 // get all trips_users
-router.get('/trips_users', (req, res) => {
+router.get('/trips_users', [authJwt.verifyToken], (req, res) => {
   console.log(req);
   TripUser.findAll({
     include: [{ model: Trip }, { model: User }]
@@ -10,7 +11,7 @@ router.get('/trips_users', (req, res) => {
 });
 
 // get trip_user by id
-router.get('/trips_users/:id', (req, res) => {
+router.get('/trips_users/:id', [authJwt.verifyToken], (req, res) => {
   TripUser.findByPk(req.params.id, {
     include: [{ model: Trip }, { model: User }]
   })
@@ -26,7 +27,7 @@ router.get('/trips_users/:id', (req, res) => {
 });
 
 // get trip_user by userId
-router.get('/trips_users/findByUserId/:userId', (req, res) => {
+router.get('/trips_users/findByUserId/:userId', [authJwt.verifyToken], (req, res) => {
   TripUser.findAll({
     include: [{ model: Trip }, { model: User }],
     where: { userId: req.params.userId }
@@ -43,7 +44,7 @@ router.get('/trips_users/findByUserId/:userId', (req, res) => {
 });
 
 // create a trip_user
-router.post('/trips_users', (req, res) => {
+router.post('/trips_users', [authJwt.verifyToken], (req, res) => {
   console.log(req.body);
   TripUser.create(req.body)
     .then(trip_user => res.json(trip_user))
@@ -51,7 +52,7 @@ router.post('/trips_users', (req, res) => {
 });
 
 // modify trip_user
-router.put('/trips_users/:id', (req, res) =>
+router.put('/trips_users/:id', [authJwt.verifyToken], (req, res) =>
   TripUser.update(
     {
       tripId: req.body.tripId,
@@ -69,7 +70,7 @@ router.put('/trips_users/:id', (req, res) =>
 );
 
 // delete trip_user
-router.delete('/trips_users/:id', (req, res) =>
+router.delete('/trips_users/:id', [authJwt.verifyToken], (req, res) =>
   TripUser.destroy({
     where: {
       id: req.params.id
@@ -80,7 +81,7 @@ router.delete('/trips_users/:id', (req, res) =>
 );
 
 // delete trip_user by trip
-router.delete('/trips_users/deleteByTrip/:id', (req, res) =>
+router.delete('/trips_users/deleteByTrip/:id', [authJwt.verifyToken], (req, res) =>
   TripUser.destroy({
     where: {
       tripId: req.params.id

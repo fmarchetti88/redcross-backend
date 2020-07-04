@@ -1,4 +1,6 @@
-const { Committee, CommitteeUser, User } = require('./../sequelize');
+const { Committee, CommitteeUser, User } = require('../sequelize');
+const { authJwt } = require('../middlewares');
+const bcrypt = require('bcryptjs');
 var router = require('express').Router();
 
 const includeModels = {
@@ -6,13 +8,13 @@ const includeModels = {
 };
 
 // get all users
-router.get('/users', (req, res) => {
+router.get('/users', [authJwt.verifyToken], (req, res) => {
   console.log(req);
   User.findAll(includeModels).then((users) => res.json(users));
 });
 
 // get user
-router.get('/users/:id', (req, res) => {
+router.get('/users/:id', [authJwt.verifyToken], (req, res) => {
   User.findByPk(req.params.id, includeModels)
     .then((result) => {
       if (!result) {
@@ -26,7 +28,7 @@ router.get('/users/:id', (req, res) => {
 });
 
 // get user by username
-router.get('/users/findbyusername/:username', (req, res) => {
+router.get('/users/findbyusername/:username', [authJwt.verifyToken], (req, res) => {
   User.findOne({
     ...includeModels,
     where: { username: req.params.username }
@@ -43,7 +45,7 @@ router.get('/users/findbyusername/:username', (req, res) => {
 });
 
 // get users by committee
-router.get('/users/findByCommittee/:committeeId', (req, res) => {
+router.get('/users/findByCommittee/:committeeId', [authJwt.verifyToken], (req, res) => {
   User.findAll({
     include: [
       {
@@ -65,19 +67,21 @@ router.get('/users/findByCommittee/:committeeId', (req, res) => {
 });
 
 // create a user
-router.post('/users', (req, res) => {
-  console.log(req.body);
-  User.create(req.body)
-    .then((user) => res.json(user))
+router.post('/users', [authJwt.verifyToken], (req, res) => {
+  const user = {
+    ...req.body,
+    password: bcrypt.hashSync(req.body.password, 8)
+  };
+  User.create(user)
+    .then((user) => res.status(201).send({ id: user.id }))
     .catch((err) => res.status(409).json(err));
 });
 
 // modify user
-router.put('/users/:id', (req, res) =>
+router.put('/users/:id', [authJwt.verifyToken], (req, res) =>
   User.update(
     {
       username: req.body.username,
-      password: req.body.password,
       name: req.body.name,
       surname: req.body.surname,
       flgPasswordChanged: req.body.flgPasswordChanged,
@@ -97,7 +101,7 @@ router.put('/users/:id', (req, res) =>
     .catch((err) => res.status(409).json(err))
 );
 
-router.delete('/users/:id', (req, res) =>
+router.delete('/users/:id', [authJwt.verifyToken], (req, res) =>
   User.destroy({
     where: {
       id: req.params.id
