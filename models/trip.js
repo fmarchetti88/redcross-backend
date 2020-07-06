@@ -81,7 +81,7 @@ module.exports = (sequelize, type) => {
         model: 'vehicles',
         key: 'id'
       },
-      allowNull: false
+      allowNull: true
     }
   });
 };

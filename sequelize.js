@@ -245,6 +245,23 @@ sequelize.sync({ force: true }).then(async () => {
     committeeId: committes[0].id,
     vehicleId: vehicles[1].id
   });
+  await Trip.create({
+    date: new Date(),
+    hour: '18:00',
+    flgDestination: 2,
+    flgAr: 1,
+    siteDeparture: 'via della libertà, 11 - Cagli',
+    siteArrival: 'via dei caduti, 2 - Fermignano',
+    serviceType: 'Prelevamento persona obesa',
+    patientData: null,
+    type: 1,
+    extraUsers: 3,
+    flgNurse: 0,
+    flgToNotify: 1,
+    notes: '',
+    committeeId: committes[0].id,
+    vehicleId: null
+  });
   const trips = await Trip.findAll();
   await TripUser.create({
     userId: users[0].id,
