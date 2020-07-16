@@ -9,7 +9,7 @@
     "test": "echo \"No test\"",
     "build-ui": "rd /s /q client\\build && cd ..\\redcross-portal && npm run build --prod && xcopy build ..\\redcross-backend\\client\\build /e /i /h",
     "deploy": "git push heroku master",
-    "deploy-full": "npm run build-ui && git add * && git commit -m build-ui && npm run deploy",
+    "deploy-full": "npm run build-ui && git add * && git commit -m build-ui && git push && npm run deploy",
     "logs-prod": "heroku logs --tail",
     "production-off": "heroku ps:scale web=0",
     "production-on": "heroku ps:scale web=1"
