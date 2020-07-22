@@ -2,7 +2,6 @@ const { Committee, Trip, TripUser, User, Vehicle } = require('../sequelize');
 const { authJwt } = require('../middlewares');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const asyncHandler = require('express-async-handler');
 var router = require('express').Router();
 
 const includeModel = {
