@@ -17,6 +17,7 @@ verifyToken = (req, res, next) => {
       });
     }
     req.userId = decoded.id;
+    req.committeeId = decoded.committeeId;
     next();
   });
 };

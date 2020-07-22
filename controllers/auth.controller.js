@@ -63,7 +63,7 @@ exports.signin = (req, res) => {
           return res.status(404).send({ message: 'Utente non abilitato al comitato selezionato' });
         }
 
-        var token = jwt.sign({ id: user.id }, config.secret, {
+        var token = jwt.sign({ id: user.id, committeeId: committeeUser.committeeId }, config.secret, {
           expiresIn: 315569520 // 10 years
         });
 

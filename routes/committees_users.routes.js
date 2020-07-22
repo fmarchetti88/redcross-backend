@@ -9,7 +9,6 @@ const includeModels = {
 
 // get all committees_users
 router.get('/committees_users', [authJwt.verifyToken], (req, res) => {
-  console.log(req);
   CommitteeUser.findAll(includeModels).then((committees_users) => res.json(committees_users));
 });
 

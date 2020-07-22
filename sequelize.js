@@ -127,6 +127,7 @@ if (isInDevelopment) {
       name: 'Elena',
       surname: 'Rossi',
       birth_date: new Date(1960, 02, 11),
+      cellphoneNumber: "3281234567",
       gender: 1,
       withDrivingLicense: 0
     });

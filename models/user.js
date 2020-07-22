@@ -34,6 +34,9 @@ module.exports = (sequelize, type) => {
     email: {
       type: type.STRING
     },
+    cellphoneNumber: {
+      type: type.STRING
+    },
     gender: {
       type: type.INTEGER,
       allowNull: false,

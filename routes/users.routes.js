@@ -86,6 +86,7 @@ router.put('/users/:id', [authJwt.verifyToken], (req, res) =>
       surname: req.body.surname,
       flgPasswordChanged: req.body.flgPasswordChanged,
       email: req.body.email,
+      cellphoneNumber: req.body.cellphoneNumber,
       birth_date: req.body.birth_date,
       gender: req.body.gender,
       withDrivingLicense: req.body.withDrivingLicense,
