@@ -161,7 +161,7 @@ if (isInDevelopment) {
       userId: users[1].id,
       committeeId: committes[1].id,
       role: 1,
-      occupation: 1,
+      occupation: 0,
       disabled: 0
     });
     await Vehicle.create({
@@ -264,6 +264,23 @@ if (isInDevelopment) {
       notes: '',
       committeeId: committes[0].id,
       vehicleId: null
+    });
+    await Trip.create({
+      date: new Date(),
+      hour: '8:30',
+      flgDestination: 1,
+      flgAr: 0,
+      siteDeparture: `via della libertà, 10 - Sant'Angelo`,
+      siteArrival: 'via martiri di via fani, 2 - Mercatello sul Metauro',
+      serviceType: 'Dialisi',
+      patientData: 'Ilario Mazzi',
+      type: 0,
+      extraUsers: 2,
+      flgNurse: 1,
+      flgToNotify: 0,
+      notes: 'n/a',
+      committeeId: committes[1].id,
+      vehicleId: vehicles[2].id
     });
     const trips = await Trip.findAll();
     await TripUser.create({

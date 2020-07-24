@@ -20,7 +20,7 @@ router.get('/trips', [authJwt.verifyToken], (req, res) => {
   Trip.findAll(includeModel).then((trips) => res.json(trips));
 });
 
-// get all trips
+// get booked trips
 router.get('/trips/booked', [authJwt.verifyToken], (req, res) => {
   const model = {
     include: [
@@ -77,6 +77,46 @@ router.get('/trips/booked', [authJwt.verifyToken], (req, res) => {
         });
         res.json(newResult);
       });*/
+    })
+    .catch((err) => res.status(500).json(err));
+});
+
+// get available trips of given committee
+router.get('/trips/available', [authJwt.verifyToken], (req, res) => {
+  const model = {
+    include: [
+      { model: Committee },
+      { model: Vehicle },
+      {
+        model: TripUser,
+        required: false,
+        include: [User]
+      }
+    ],
+    where: {
+      date: {
+        [Op.gte]: new Date()
+      },
+      committeeId: req.committeeId,
+      [Op.or]: {
+        '$trip_users.userId$': null,
+        [Op.or]: {
+          '$trip_users.userId$': {
+            [Op.ne]: req.userId
+          }
+        }
+      }
+    }
+  };
+
+  Trip.findAll(model)
+    .then((resultTrips) => {
+      if (!resultTrips) {
+        return res.status(404).json({
+          error: 'trips not found'
+        });
+      }
+      return res.json(resultTrips);
     })
     .catch((err) => res.status(500).json(err));
 });
