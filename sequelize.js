@@ -127,7 +127,7 @@ if (isInDevelopment) {
       name: 'Elena',
       surname: 'Rossi',
       birth_date: new Date(1960, 02, 11),
-      cellphoneNumber: "3281234567",
+      cellphoneNumber: '3281234567',
       gender: 1,
       withDrivingLicense: 0
     });
@@ -197,8 +197,9 @@ if (isInDevelopment) {
       disabled: 1
     });
     const vehicles = await Vehicle.findAll();
+    const today = new Date();
     await Trip.create({
-      date: new Date(),
+      date: today,
       hour: '8:30',
       flgDestination: 1,
       flgAr: 0,
@@ -215,7 +216,7 @@ if (isInDevelopment) {
       vehicleId: vehicles[0].id
     });
     await Trip.create({
-      date: new Date(),
+      date: today,
       hour: '13:00',
       flgDestination: 0,
       flgAr: 1,
@@ -232,7 +233,7 @@ if (isInDevelopment) {
       vehicleId: vehicles[0].id
     });
     await Trip.create({
-      date: new Date(),
+      date: today,
       hour: '15:00',
       flgDestination: 1,
       flgAr: 1,
@@ -249,7 +250,7 @@ if (isInDevelopment) {
       vehicleId: vehicles[1].id
     });
     await Trip.create({
-      date: new Date(),
+      date: today,
       hour: '18:00',
       flgDestination: 2,
       flgAr: 1,
@@ -266,7 +267,7 @@ if (isInDevelopment) {
       vehicleId: null
     });
     await Trip.create({
-      date: new Date(),
+      date: today,
       hour: '8:30',
       flgDestination: 1,
       flgAr: 0,
@@ -281,6 +282,25 @@ if (isInDevelopment) {
       notes: 'n/a',
       committeeId: committes[1].id,
       vehicleId: vehicles[2].id
+    });
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    await Trip.create({
+      date: tomorrow,
+      hour: '8:30',
+      flgDestination: 1,
+      flgAr: 0,
+      siteDeparture: `via della libertà, 10 - Sant'Angelo`,
+      siteArrival: 'via martiri di via fani, 2 - Mercatello sul Metauro',
+      serviceType: 'Dialisi giorno dopo',
+      patientData: 'Ilario Mazzi',
+      type: 0,
+      extraUsers: 2,
+      flgNurse: 1,
+      flgToNotify: 0,
+      notes: 'n/a',
+      committeeId: committes[0].id,
+      vehicleId: vehicles[0].id
     });
     const trips = await Trip.findAll();
     await TripUser.create({
