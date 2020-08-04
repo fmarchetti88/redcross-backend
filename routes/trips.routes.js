@@ -101,8 +101,11 @@ router.get('/trips/available', [authJwt.verifyToken], (req, res) => {
       [Op.or]: {
         '$trip_users.userId$': null,
         [Op.or]: {
-          '$trip_users.userId$': {
-            [Op.ne]: req.userId
+          '$trip.id$': {
+            [Op.notIn]: Sequelize.literal(`(SELECT t1.id 
+FROM trips t1
+  INNER JOIN trip_users tu1 ON t1.id = tu1.tripId
+WHERE tu1.userId = ${req.userId})`)
           }
         }
       }
