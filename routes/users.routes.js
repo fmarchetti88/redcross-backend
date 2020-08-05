@@ -77,6 +77,45 @@ router.post('/users', [authJwt.verifyToken], (req, res) => {
     .catch((err) => res.status(409).json(err));
 });
 
+// modify password user
+router.post('/users/modifypassword', [authJwt.verifyToken], (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  if (!oldPassword || !newPassword) {
+    res.status(400).send({
+      message: 'Parametri mancanti'
+    });
+    return;
+  }
+  User.findOne({
+    where: {
+      id: req.userId
+    }
+  })
+    .then((user) => {
+      var passwordIsValid = bcrypt.compareSync(oldPassword, user.password);
+      if (!passwordIsValid) {
+        res.status(409).send({
+          message: 'Password errata'
+        });
+        return;
+      }
+      const newPasswordCrypted = bcrypt.hashSync(newPassword, 8);
+      User.update(
+        {
+          password: newPasswordCrypted
+        },
+        {
+          where: {
+            id: req.userId
+          }
+        }
+      )
+        .then((result) => res.status(200).send({ message: 'Modifica avvenuta correttamente' }))
+        .catch((err) => res.status(409).json(err));
+    })
+    .catch((err) => res.status(409).json(err));
+});
+
 // modify user
 router.put('/users/:id', [authJwt.verifyToken], (req, res) =>
   User.update(
