@@ -28,9 +28,7 @@ router.get('/trips/booked', [authJwt.verifyToken], (req, res) => {
       { model: Vehicle },
       {
         model: TripUser,
-        where: {
-          userId: req.userId
-        },
+        required: false,
         include: [User]
       }
     ],
@@ -38,7 +36,15 @@ router.get('/trips/booked', [authJwt.verifyToken], (req, res) => {
       date: {
         [Op.gte]: new Date()
       },
-      committeeId: req.committeeId
+      committeeId: req.committeeId,
+      [Op.or]: {
+        '$trip.id$': {
+          [Op.in]: Sequelize.literal(`(SELECT t1.id 
+FROM trips t1
+  INNER JOIN trip_users tu1 ON t1.id = tu1.tripId
+WHERE tu1.userId = ${req.userId})`)
+        }
+      }
     }
   };
 
