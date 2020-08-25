@@ -56,33 +56,6 @@ WHERE tu1.userId = ${req.userId})`)
         });
       }
       return res.json(resultTrips);
-      /*const myPromises = resultTrips.map((trip) => {
-        return TripUser.findAll({
-          include: [
-            {
-              model: User
-            }
-          ],
-          where: {
-            tripId: trip.id
-          }
-        });
-      });
-      return Promise.all(myPromises).then((trip_users) => {
-        if (!trip_users) {
-          return res.status(404).json({
-            error: 'trip_users not found'
-          });
-        }
-        const newResult = resultTrips.map((trip, index) => {
-          const newTrip = {
-            ...trip,
-            trip_users: trip_users[index]
-          };
-          return newTrip;
-        });
-        res.json(newResult);
-      });*/
     })
     .catch((err) => res.status(500).json(err));
 });
