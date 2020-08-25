@@ -45,7 +45,11 @@ FROM trips t1
 WHERE tu1.userId = ${req.userId})`)
         }
       }
-    }
+    },
+    order: [
+      [ 'date', 'ASC' ],
+      [ 'hour', 'ASC' ]
+    ]
   };
 
   Trip.findAll(model)
@@ -88,7 +92,11 @@ WHERE tu1.userId = ${req.userId})`)
           }
         }
       }
-    }
+    },
+    order: [
+      [ 'date', 'ASC' ],
+      [ 'hour', 'ASC' ]
+    ]
   };
 
   Trip.findAll(model)
