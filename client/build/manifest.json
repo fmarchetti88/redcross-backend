@@ -1,15 +1,10 @@
 {
   "short_name": "Servizio facile",
-  "name": "Servizio facile - Portale di riferimento per la gestione/prenotazione dei servizi",
+  "name": "Portale di riferimento per la gestione/prenotazione dei servizi",
   "icons": [
     {
       "src": "logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "red_cross_logo.png",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ],
